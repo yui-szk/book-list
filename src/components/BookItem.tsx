@@ -1,19 +1,19 @@
+import { Book } from "@/types/book";
+
 type Props = {
-  value: string;
+  book: Book;
 };
 
-export function BookItem({ value }: Props) {
+export function BookItem({ book }: Props) {
   return (
-    <li>
-      <input type="text" value={value} />
-      <input type="date" />
-    </li>
+    <div>
+      <input type="text" value={book.title} />
+      <input type="date" value={formatDate(book.readDate)} />
+    </div>
   );
 }
 
-// BookItemのtype
-// src配下にtypeつくって
-
-// useStateにBookItemの配列を管理する用配列
-// →何個かいれて表示する
-// →setStateで更新する処理
+// Date => "2024-01-10"の形のstring型にする
+function formatDate(date: Date): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
